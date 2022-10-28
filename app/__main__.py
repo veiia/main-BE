@@ -1,3 +1,4 @@
+import uvicorn
 from fastapi import FastAPI
 
 from app.settings.db import database, User
@@ -7,9 +8,25 @@ app.state.database = database
 
 
 @app.get('/')
-async def main():
+async def index():
     users = await User.objects.all()
     return {'message': users}
+
+
+@app.get('/projects/current')
+async def get_current_projects():
+    return {
+        'project': 'Name',
+        'fill': True
+    }
+
+
+@app.get('/projects/previous')
+async def get_previous_projects():
+    return {
+        'project': 'Name',
+        'fill': False
+    }
 
 
 @app.on_event('startup')
@@ -23,3 +40,7 @@ async def startup() -> None:
 async def shutdown() -> None:
     if database.is_connected:
         await database.disconnect()
+
+
+if __name__ == '__main__':
+    uvicorn.run(app, host='0.0.0.0', port=8000, log_level="info", reload=True)
