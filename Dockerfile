@@ -8,8 +8,6 @@ WORKDIR /main
 COPY requirements requirements
 
 RUN python -m pip install --upgrade pip
-RUN pip3 install -r /main/requirements/base.pip
+RUN pip3 install -r /main/requirements/base.txt
 
 COPY . .
-#COPY ./app /main/app
-#COPY ./deploy /main/deploy

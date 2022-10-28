@@ -1,13 +1,25 @@
-import uvicorn
 from fastapi import FastAPI
 
+from app.settings.db import database, User
+
 app = FastAPI()
+app.state.database = database
 
 
 @app.get('/')
 async def main():
-    return {'message': 'STARTED!!!'}
+    users = await User.objects.all()
+    return {'message': users}
 
 
-if __name__ == "__main__":
-    uvicorn.run("__main__:app", host="localhost", port=8888)
+@app.on_event('startup')
+async def startup() -> None:
+    if not database.is_connected:
+        await database.connect()
+    await User.objects.get_or_create(email='test@test.com')
+
+
+@app.on_event('shutdown')
+async def shutdown() -> None:
+    if database.is_connected:
+        await database.disconnect()
