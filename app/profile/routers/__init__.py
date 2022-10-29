@@ -1,8 +1,7 @@
-from fastapi import APIRouter
-
 from app.profile.routers.appearance import router as router_appearance
 from app.profile.routers.info import router as router_info
 from app.settings.tags import Tags
+from fastapi import APIRouter
 
 router = APIRouter(
     prefix=f'/{Tags.PROFILE}',
@@ -11,7 +10,7 @@ router = APIRouter(
     responses={
         404: {'description': 'Not found'},
         403: {'description': 'permission denied'},
-    }
+    },
 )
 
 router.include_router(router_info)
