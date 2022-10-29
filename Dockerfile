@@ -8,6 +8,6 @@ WORKDIR /main
 COPY requirements requirements
 
 RUN python -m pip install --upgrade pip
-RUN pip3 install -r /main/requirements/base.txt
+RUN pip3 install -r /main/requirements/dev.txt
 
 COPY . .
