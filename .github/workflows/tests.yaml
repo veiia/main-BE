@@ -25,7 +25,7 @@ jobs:
           pip install -r ./requirements/test.txt
       - name: Test
         run: |
-          pytest -v tests --junitxml=test-reports/report.xml
+          pytest -v --junitxml=test-reports/report.xml
       - name: Lint code
         run: |
           pip install -r ./requirements/lint.txt
