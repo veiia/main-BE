@@ -2,6 +2,7 @@ import uvicorn
 from fastapi import FastAPI
 
 from app.settings.db import database, User
+from app.profile.routers import router as router_profile
 
 app = FastAPI()
 app.state.database = database
@@ -12,21 +13,7 @@ async def index():
     users = await User.objects.all()
     return {'message': users}
 
-
-@app.get('/projects/current')
-async def get_current_projects():
-    return {
-        'project': 'Name',
-        'fill': True
-    }
-
-
-@app.get('/projects/previous')
-async def get_previous_projects():
-    return {
-        'project': 'Name',
-        'fill': False
-    }
+app.include_router(router_profile)
 
 
 @app.on_event('startup')
