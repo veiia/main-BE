@@ -8,7 +8,7 @@ router = APIRouter(
     # dependencies=[Depends(get_token_header)],
     responses={
         404: {"description": "Not found"},
-        403: {"description": "permission denied"},
+        403: {"description": "Permission Denied"},
     },
 )
 
