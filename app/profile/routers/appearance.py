@@ -11,12 +11,12 @@ router = APIRouter(
     responses={
         404: {'description': 'Not found'},
         403: {'description': 'Permission Denied'},
-    }
+    },
 )
 
 
 @router.get('/', response_model=AppearanceSchema)
-async def get_appearance(firstname: str) -> AppearanceSchema:
+async def get_appearance(firstname: str) -> User:
     user = await User.objects.get_or_none(firstname=firstname)
     if not user:
         raise HTTPException(status_code=404, detail='Not found')
@@ -24,7 +24,7 @@ async def get_appearance(firstname: str) -> AppearanceSchema:
 
 
 @router.patch('/', response_model=AppearanceSchema)
-async def change_appearance(firstname: str, appearance: AppearanceSchema) -> AppearanceSchema:
+async def change_appearance(firstname: str, appearance: AppearanceSchema) -> User:
     current = await User.objects.get_or_none(firstname=firstname)
     if not current:
         raise HTTPException(status_code=404, detail='Not found')

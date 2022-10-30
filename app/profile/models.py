@@ -14,5 +14,3 @@ class User(orm.Model):
     lastname: str = orm.String(max_length=128, unique=False)
     password: str = orm.String(max_length=128)
     is_light_theme: bool = orm.Boolean(default=True, nullable=False)
-
-

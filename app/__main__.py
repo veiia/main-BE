@@ -15,7 +15,12 @@ async def index() -> User:
     try:
         return await User.objects.first()
     except ormar.exceptions.NoMatch:
-        user, _ = await User.objects.get_or_create(email='test@test.com', firstname='name', lastname='name', password='dfdf')
+        user, _ = await User.objects.get_or_create(
+            email='test@test.com',
+            firstname='name',
+            lastname='name',
+            password='dfdf',
+        )
         return user
 
 
