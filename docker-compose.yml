@@ -5,7 +5,7 @@ services:
     container_name: "main-api"
     build: .
     working_dir: /app
-    command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; uvicorn app.__main__:app --host 0.0.0.0 --reload'
+    command: bash -c 'alembic upgrade head && while !</dev/tcp/db/5432; do sleep 1; done; uvicorn app.__main__:app --host 0.0.0.0 --reload'
     ports:
       - "8000:8000"
     volumes:
@@ -35,6 +35,16 @@ services:
       interval: 5s
       retries: 5
     restart: always
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=pgadmin4@pgadmin.org
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
 
 #  redis:
 #    image: redis
