@@ -1,5 +1,6 @@
-from app.settings.tags import Tags
 from fastapi import APIRouter
+
+from app.settings.tags import Tags
 
 
 router = APIRouter(

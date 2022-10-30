@@ -1,7 +1,8 @@
 import uvicorn
+from fastapi import FastAPI
+
 from app.profile.routers import router as router_profile
 from app.settings.db import database, User
-from fastapi import FastAPI
 
 app = FastAPI()
 app.state.database = database

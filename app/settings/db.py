@@ -1,6 +1,7 @@
 import databases
 import ormar
 import sqlalchemy
+
 from app.settings.config import settings
 
 database = databases.Database(settings.db_url)
