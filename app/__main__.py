@@ -15,7 +15,12 @@ async def index() -> User:
     try:
         return await User.objects.first()
     except ormar.exceptions.NoMatch:
-        user, _ = await User.objects.get_or_create(email='test@test.com', firstname='name', lastname='name')
+        user, _ = await User.objects.get_or_create(
+            email='test@test.com',
+            firstname='name',
+            lastname='name',
+            password='dfdf',
+        )
         return user
 
 
@@ -26,8 +31,6 @@ app.include_router(router_profile)
 async def startup() -> None:
     if not database.is_connected:
         await database.connect()
-    # await init_db()
-    # await User.objects.get_or_create(email='test@test.com')
 
 
 @app.on_event('shutdown')

@@ -14,8 +14,3 @@ class BaseMeta(ModelMeta):
 
 
 engine = create_engine(settings.db_url)
-
-
-async def init_db():
-    with engine.begin():
-        metadata.create_all(engine)
