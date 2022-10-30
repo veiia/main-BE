@@ -2,8 +2,7 @@ name: Tests main-BE
 
 on:
   pull_request:
-    types:
-      - edited
+    branches: [ main, dev ]
 
 jobs:
   build:
