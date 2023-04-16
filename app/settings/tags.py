@@ -5,3 +5,6 @@ class Tags(str, Enum):
     PROFILE = 'profile'
     APPEARANCE = 'appearance'
     ME = 'me'
+    FEEDBACK = 'feedback'
+    USAGE = 'usage'
+    ACTIVITY = 'activity'
