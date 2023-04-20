@@ -1,14 +1,23 @@
-class ActivityContainerResponse:
-    pass
+from pydantic import BaseModel
 
 
-class ListActivityContainerResponse:
+class AbstractActivityResponse(BaseModel):
+    action: str
+    out: str
+    origin: str
+
+
+class ActivityContainerResponse(AbstractActivityResponse):
+    container_id: int
+
+
+class ListActivityContainerResponse(BaseModel):
     activity: list[ActivityContainerResponse]
 
 
-class ActivityUserResponse:
-    pass
+class ActivityUserResponse(AbstractActivityResponse):
+    user_id: int
 
 
-class ListActivityUserResponse:
+class ListActivityUserResponse(BaseModel):
     activity: list[ActivityUserResponse]

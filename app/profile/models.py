@@ -5,7 +5,7 @@ from app.settings.db import BaseMeta
 
 class User(orm.Model):
     class Meta(BaseMeta):
-        tablename = 'users'
+        tablename = "users"
 
     id: int = orm.Integer(primary_key=True)
     email: str = orm.String(max_length=128, unique=True, nullable=False)

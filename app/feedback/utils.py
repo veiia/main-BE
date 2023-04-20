@@ -7,3 +7,7 @@ class FeedbackThemes(str, Enum):
     DOMAINS = "Domains"
     COMPLAINT = "Complaint"
     OTHER = "Other"
+
+    @classmethod
+    def to_dict(cls) -> dict[str, str]:
+        return {k.lower(): k for k in cls}

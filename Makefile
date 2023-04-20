@@ -14,13 +14,13 @@ test:
 	PYTHONPATH=$(pythonpath) pytest tests
 
 migrate:
-    alembic upgrade head
+	alembic upgrade head
 
 migrate-down:
-    alembic downgrade -1
+	alembic downgrade -1
 
 current-migration:
-    alembic current
+	alembic current
 
 install-dev:
 	pip3 install -r ./requirements/dev.txt
@@ -29,4 +29,4 @@ install-test:
 	pip3 install -r ./requirements/test.txt
 
 install-lint:
-    pip3 install -r ./requirements/lint.txt
+	pip3 install -r ./requirements/lint.txt

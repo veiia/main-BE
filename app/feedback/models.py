@@ -7,7 +7,7 @@ from profile.models import User
 
 class Feedback(orm.Model):
     class Meta(BaseMeta):
-        tablename = 'feedback'
+        tablename = "feedback"
 
     id: int = orm.Integer(primary_key=True)
     theme: str = orm.String(enum_class=FeedbackThemes, max_length=128)

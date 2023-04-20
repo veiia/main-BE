@@ -1,5 +1,10 @@
+from feedback.utils import FeedbackThemes
+
+
 class FeedbackResponse:
-    pass
+    theme: FeedbackThemes
+    text: str
+    user: str
 
 
 class ListFeedbacksResponse:

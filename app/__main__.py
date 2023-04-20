@@ -10,16 +10,16 @@ app = FastAPI()
 app.state.database = database
 
 
-@app.get('/', response_model=User)
+@app.get("/", response_model=User)
 async def index() -> User:
     try:
         return await User.objects.first()
     except ormar.exceptions.NoMatch:
         user, _ = await User.objects.get_or_create(
-            email='test@test.com',
-            firstname='name',
-            lastname='name',
-            password='dfdf',
+            email="test@test.com",
+            firstname="name",
+            lastname="name",
+            password="dfdf",
         )
         return user
 
@@ -27,17 +27,17 @@ async def index() -> User:
 app.include_router(router_profile)
 
 
-@app.on_event('startup')
+@app.on_event("startup")
 async def startup() -> None:
     if not database.is_connected:
         await database.connect()
 
 
-@app.on_event('shutdown')
+@app.on_event("shutdown")
 async def shutdown() -> None:
     if database.is_connected:
         await database.disconnect()
 
 
-if __name__ == '__main__':
-    uvicorn.run(app, host='0.0.0.0', port=8000, log_level='info', reload=True)
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info", reload=True)
